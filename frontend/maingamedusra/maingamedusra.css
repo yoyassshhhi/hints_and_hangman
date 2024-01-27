@@ -102,19 +102,21 @@ body {
 }
 
 .word-display .letter {
-    width: 28px;
-    font-size: 2rem;
+    width: 55px;
+    font-size: 2rem; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the font bold */
     text-align: center;
-    font-weight: 600;
     margin-bottom: 40px;
     text-transform: uppercase;
     border-bottom: 3px solid #000;
 }
 
+
 .word-display .letter.incorrect {
     margin: -40px 0 35px;
     border-color: transparent;
 }
+
 
 .game-box h4 {
     text-align: center;

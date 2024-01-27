@@ -33,7 +33,8 @@
             display: grid;
             grid-template-columns: repeat(10, 1fr);
             gap: 3px;
-            max-width: 1000px;
+            max-height: 300px;
+            max-width: 800px;
             margin: 20px auto;
             padding: 5px;
             border: 1px solid #ccc;
@@ -95,13 +96,9 @@
         </div>
         <div class="game-box">
 
-        <div class="text-input-container">
-        <input type="text" id="guessInput" placeholder="Enter your guess..." />
-        <button class="submit-guess" onclick="validateGuess()">Submit</button>
-    </div>
-
+        
+        <div class="word-display"></div>
         <div id="keyboard"></div>
-            <ul class="word-display"></ul>
             <h4 class="hint-text">सहायक-सूचना :<b></b></h4>
             <h4 class="guesses-text">ग़लत अनुमान: <b></b></h4>
         </div>
@@ -129,14 +126,18 @@
 
         const keyboardElement = document.getElementById('keyboard');
         const keyboardLayout = [
-            'अ आ इ ई उ ऊ ए ऐ ऋ ओ औ',
-            'क ख ग घ ङ च छ ज झ ञ',
-            'ट ठ ड ढ ण त थ द ध न',
-            'प फ ब भ म य र ल व श',
-            'ष स ह ं',
-            ' े ु ू ि ी ो ौ ा ी ै',
-            ' ृ ् ं',
-        ];
+            'े', 'ु', 'ू', 'ि', 'ी', 'ो', 'ौ', 'ा', 'ी', 'ै',
+			 'ृ', '्', 'ं','ं', 'अ', 'आ', 'इ', 'ई', 'उ', 
+			 'ऊ','ए','ऐ', 'ओ', 'औ',
+			 'क', 'ख', 'ग', 'घ', 'ङ', 
+			 'च', 'छ', 'ज', 'झ', 'ञ',
+			 'ट', 'ठ', 'ड', 'ढ', 'ण', 
+			 'त', 'थ', 'द', 'ध', 'न',
+			 'प', 'फ', 'ब', 'भ', 'म', 
+			 'य', 'र', 'ल', 'व', 'श',
+			 'ष', 'स', 'ह', 'क्ष', 'ज्ञ', 'ऋ',
+];
+
 
 
         keyboardLayout.forEach(row => {

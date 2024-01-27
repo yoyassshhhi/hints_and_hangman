@@ -23,31 +23,24 @@ const resetGame = () => {
 
 
 // Function to update the word display in the input field
-// Inside the updateWordDisplay function
 const updateWordDisplay = () => {
     const letters = currentWord.toLowerCase().split('');
-    const wordDisplayList = document.querySelector('.word-display ul');
-
-    wordDisplayList.innerHTML = '';
+    let wordDisplayText = '';
 
     letters.forEach((letter, index) => {
-        const li = document.createElement('li');
-        const textbox = document.createElement('span');
-        textbox.classList.add('textbox');
-
         if (correctLetters.includes(letter)) {
-            textbox.textContent = letter;
-            li.classList.add('guessed');
+            wordDisplayText += letter;
+        } else {
+            wordDisplayText += '_';
         }
-
-        li.appendChild(textbox);
-        wordDisplayList.appendChild(li);
     });
+
+    // Update the text content and style of the wordDisplay element
+    const wordDisplay = document.querySelector('.word-display');
+    wordDisplay.textContent = wordDisplayText;
+    wordDisplay.style.fontSize = '25px'; // Adjust the font size as needed
+    wordDisplay.style.fontWeight = 'bold';
 };
-
-
-
-
 
 
 const updateHangmanImage = () => {
@@ -75,6 +68,7 @@ const gameOver = (isVictory) => {
 
     if (isVictory) {
         updateScore();
+        updateWordDisplay();
     } else if (wrongGuessCount > maxGuesses) {
         currentScore = Math.max(0, currentScore - incorrectGuessPenalty);
         currentScoreDisplay.innerText = currentScore;
@@ -169,4 +163,10 @@ hintButton.addEventListener("click", () => {
 
 getRandomWord();
 
-playAgainBtn.addEventListener("click", getRandomWord);
+playAgainBtn.addEventListener("click", () => {
+    // Reset the game
+    getRandomWord();
+
+    // Hide the modal
+    gameModal.classList.remove("show");
+});
