@@ -1,0 +1,116 @@
+<link rel="shortcut icon" href="hnhlogo.png" type="image/x-icon">
+
+<!DOCTYPE html>
+<html
+	lang="en"
+	dir="ltr"
+>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<meta
+			http-equiv="X-UA-Compatible"
+			content="ie=edge"
+		/>
+		<title>HINTS & HANGMAN</title>
+		<meta
+			name="author"
+			content=""
+		/>
+		<meta
+			name="description"
+			content=""
+		/>
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="./favicon/apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./favicon/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="./favicon/favicon-16x16.png"
+		/>
+		<link
+			rel="manifest"
+			href="./favicon/site.webmanifest"
+		/>
+		<link
+			rel="stylesheet"
+			href="style.css"
+		/>
+		<script src="./scripts/script.js" defer></script>
+		<script src="./scripts/word-list.js"></script>
+	</head>
+	<body>
+		<div class="game-modal">
+			<div class="content">
+				<img
+					src="#"
+					alt="gif"
+				/>
+				<h4>Game Over!</h4>
+				<p>The correct word was: <b>rainbow</b></p>
+				<button class="play-again">Play Again</button>
+			</div>
+		</div>
+		<div class="container">
+			<div class="hangman-box">
+				<img
+					src="#"
+					draggable="false"
+					alt="hangman-img"
+				/>
+				<h1>HINTS & HANGMAN</h1>
+			</div>
+			<div class="game-box">
+				<ul class="word-display"></ul>
+				<h4 class="hint-text">Hint: <b></b></h4>
+				<h4 class="guesses-text">Incorrect guesses: <b></b></h4>
+				<div class="keyboard"></div>
+			</div>
+		</div>
+		<a href="../levels/levels.html" class="back-to-home-page">Back to Level Page</a>
+		<button class="clear-input">Clear Input</button>
+		<button class="get-hint">GET HINT !</button>
+			<div class="score-display">
+				<h4>Current Score: <span class="current-score">0</span></h4>
+				<img src="champion.png" alt="Trophy Icon" class="trophy-icon">
+			</div>
+			
+		</div>
+		
+		<script>
+  // Add event listener for the "Easy" mode button
+  const easyModeButton = document.querySelector('.mode.easy');
+  easyModeButton.addEventListener('click', () => {
+    // Redirect to the main game page for Easy mode
+    window.location.href = '../maingame/maingame.html?mode=easy';
+  });
+
+  // Add event listener for the "Play" button
+  const playButton = document.getElementById('playButton');
+  playButton.addEventListener('click', () => {
+    // Redirect to the main game page with the selected mode (you may need to retrieve the selected mode)
+    // For example, if you have radio buttons for modes, you can get the selected mode and append it to the URL
+    const selectedMode = document.querySelector('input[name="mode"]:checked').value;
+    window.location.href = `../maingame/maingame.html?mode=${selectedMode}`;
+  });
+</script>
+
+</body>
+</html>
+		
+
+	</body>
+</html>

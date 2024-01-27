@@ -1,0 +1,202 @@
+<link rel="shortcut icon" href="hnhlogo.png" type="image/x-icon">
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>HINTS & HANGMAN</title>
+    <meta name="author" content="" />
+    <meta name="description" content="" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png" />
+    <link rel="manifest" href="./favicon/site.webmanifest" />
+    <link rel="stylesheet" href="maingamedusra.css" />
+    <script src="./scripts/script.js" defer></script>
+    <script src="./scripts/word-list.js"></script>
+
+    <style>
+        body {
+            font-family: "Open Sans", sans-serif;
+            display: flex;
+            padding: 0 10px;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(#234a91, #912077, #239691, #249922);
+        }
+
+
+        #keyboard {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 3px;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .key {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 25px;
+            font-size: 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .key:hover {
+            background-color: #e0e0e0;
+        }
+
+        .text-input-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #guessInput {
+            padding: 10px;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .submit-guess {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="game-modal">
+        <div class="content">
+            <img src="#" alt="gif" />
+            <h4>खेल खत्म!</h4>
+            <p>सही शब्द : <b>rainbow</b></p>
+            <button class="play-again">फिर से चालू करें</button>
+        </div>
+    </div>
+
+    
+    <div class="container">
+        <div class="hangman-box">
+            <img src="#" draggable="false" alt="hangman-img" />
+            <h1>HINTS & HANGMAN</h1>
+        </div>
+        <div class="game-box">
+
+        <div class="text-input-container">
+        <input type="text" id="guessInput" placeholder="Enter your guess..." />
+        <button class="submit-guess" onclick="validateGuess()">Submit</button>
+    </div>
+
+        <div id="keyboard"></div>
+            <ul class="word-display"></ul>
+            <h4 class="hint-text">सहायक-सूचना :<b></b></h4>
+            <h4 class="guesses-text">ग़लत अनुमान: <b></b></h4>
+        </div>
+    </div>
+
+    <div class="buttons-container">
+    <a href="../levels/levels.html" class="back-to-home-page">Back to Level Page</a>
+    <button class="clear-input">Clear Input</button>
+    <button class="get-hint">GET HINT !</button>
+    </div>
+    <div class="score-display">
+        <h4>Current Score: <span class="current-score">0</span></h4>
+        <img src="champion.png" alt="Trophy Icon" class="trophy-icon">
+    </div>
+
+    <script>
+
+    const guessInput = document.getElementById('guessInput');
+
+    
+
+
+
+
+
+        const keyboardElement = document.getElementById('keyboard');
+        const keyboardLayout = [
+            'अ आ इ ई उ ऊ ए ऐ ऋ ओ औ',
+            'क ख ग घ ङ च छ ज झ ञ',
+            'ट ठ ड ढ ण त थ द ध न',
+            'प फ ब भ म य र ल व श',
+            'ष स ह ं',
+            ' े ु ू ि ी ो ौ ा ी ै',
+            ' ृ ् ं',
+        ];
+
+
+        keyboardLayout.forEach(row => {
+            const keys = row.split(' ');
+            keys.forEach(key => {
+                const keyElement = document.createElement('div');
+                keyElement.className = 'key';
+                keyElement.textContent = key;
+                keyElement.addEventListener('click', () => updateInput(key));
+                keyboardElement.appendChild(keyElement);
+            });
+        });
+
+        function validateGuess() {
+            const guessInput = document.getElementById('guessInput');
+            const guessedWord = guessInput.value.trim().toLowerCase();
+
+            if (wordList.some(wordObj => wordObj.word.toLowerCase() === guessedWord)) {
+                alert("Correct Guess!"); // You can customize this feedback
+                getRandomWord(); // Reset the game for a new word
+            } else {
+                alert("Incorrect Guess. Try again!"); // You can customize this feedback
+            }
+
+            // Clear the input field
+            guessInput.value = '';
+        }
+
+
+        // Modify the function to handle key clicks and update the game
+        function onKeyClick(key) {
+        const pressedKey = key.toLowerCase(); // Convert to lowercase for consistency
+        initGame(pressedKey);
+    }
+
+        // Function to handle the game logic when the submit button is clicked
+        const onGuessSubmit = () => {
+        const guessInput = document.getElementById('guessInput');
+        const guessedWord = guessInput.value.trim().toLowerCase();
+
+        if (guessedWord.length > 0) {
+            // Call the game initialization function with the guessed word
+            initGame(guessedWord);
+        }
+    };
+
+// Add an event listener to the submit button
+const submitButton = document.querySelector('.submit-guess');
+submitButton.addEventListener('click', onGuessSubmit);
+
+// Disable the default form submission behavior on pressing Enter
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        onGuessSubmit();
+    }
+});
+
+
+
+    </script>
+</body>
+</html>

@@ -22,10 +22,13 @@
               <span>CONTACT US</span>
              
             </div>
-            <div class="app-contact">CONTACT INFO : +9X XX XXX XX0</div>
+            <div class="app-contact">CONTACT INFO : +91 99 XX XXX 550</div>
+
           </div>
           <div class="screen-body-item">
             <div class="app-form">
+              <form id="contactForm" action="https://formspree.io/f/mbjnrerv" method="post">
+                
               <div class="app-form-group">
                 <input class="app-form-control" placeholder="NAME">
               </div>
@@ -39,13 +42,20 @@
                 <input class="app-form-control" placeholder="MESSAGE">
               </div>
               <div class="app-form-group buttons">
-                <button class="app-form-button">CANCEL</button>
+                <button class="app-form-button" onclick="cancelForm()">CANCEL</button>
                 <button class="app-form-button">SEND</button>
               </div>
-            </div>
+
+              
+                <input type="hidden" name="recipient_email" value="hintsandhangman@gmail.com">
+                <input type="hidden" name="subject" value="Contact Form Submission">
+
+            </form></div>
           </div>
         </div>
       </div>
+
+
       <div class="credits">
        
         <a class="credits-link" href="https://dribbble.com/shots/2666271-Contact" target="_blank">
@@ -60,13 +70,23 @@
           HINTS & HANGMAN
         </a>
       </div>
+      
+
+
+<div class="back-button-container">
+    <a href="index.html" class="back-button">Back to Home Page</a>
+</div>
+
+
     </div>
   </div>
 
-  <body onload="myFunction()">
+  <script>
+    function cancelForm() {
+        document.getElementById("contactForm").reset();
+    }
+</script>
 
-    <div id="loading"></div>
-    
     
     
   

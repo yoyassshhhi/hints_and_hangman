@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hindi Inscript Virtual Keyboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #keyboard {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 5px;
+      max-width: 400px;
+      margin: 20px auto;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+
+    .key {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .key:hover {
+      background-color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+  <div id="keyboard"></div>
+
+  <script>
+    const keyboardLayout = [
+      '1 2 3 4 5 6 7 8 9 0',
+      'क ख ग घ ङ च छ ज झ ञ',
+      'ट ठ ड ढ ण त थ द ध न',
+      'प फ ब भ म य र ल व श',
+      'ष स ह ं',
+      ' े ु ू ि ी ो ौ ा ी ै ृ ् ं',
+      '  ',
+    ];
+
+    const keyboardElement = document.getElementById('keyboard');
+
+    keyboardLayout.forEach(row => {
+      const keys = row.split(' ');
+      keys.forEach(key => {
+        const keyElement = document.createElement('div');
+        keyElement.className = 'key';
+        keyElement.textContent = key;
+        keyElement.addEventListener('click', () => onKeyClick(key));
+        keyboardElement.appendChild(keyElement);
+      });
+    });
+
+    function onKeyClick(key) {
+      // Handle key click event
+      // You can perform actions based on the clicked key
+      console.log('Key clicked:', key);
+    }
+  </script>
+</body>
+</html>

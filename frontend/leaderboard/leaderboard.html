@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #b0c4b1; /* Updated background color */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 80%;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1 {
+      color: #333;
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon {
+      margin-right: 10px;
+      width: 50px;
+      height: 50px;
+    }
+
+    #leaderboard {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px auto;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    #leaderboard th, #leaderboard td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+
+    #leaderboard th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    #input-section {
+      margin-top: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      padding: 8px;
+      margin-bottom: 12px;
+      width: calc(50% - 10px);
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <h1>
+      <img class="icon" src="podium.png" alt="Podium Icon">
+      LEADERBOARD
+    </h1>
+
+    <table id="leaderboard">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody id="leaderboard-body">
+        <!-- Leaderboard rows will be dynamically added here -->
+      </tbody>
+    </table>
+
+    <div id="input-section">
+      <label for="name">Enter Name:</label>
+      <input type="text" id="name" placeholder="Name">
+
+      <label for="score">Enter Score:</label>
+      <input type="number" id="score" placeholder="Score">
+
+      <button onclick="updateLeaderboard()">Update Leaderboard</button>
+    </div>
+
+  </div>
+
+  <script>
+    function updateLeaderboard() {
+      var name = document.getElementById('name').value;
+      var score = document.getElementById('score').value;
+
+      // Validation: Check if both name and score are provided
+      if (name.trim() === '' || isNaN(score)) {
+        alert('Please enter valid name and score.');
+        return;
+      }
+
+      // Create a new row for the leaderboard
+      var row = document.createElement('tr');
+
+      // Add rank (incremental number) to the row
+      var rank = document.getElementById('leaderboard-body').getElementsByTagName('tr').length + 1;
+      var rankCell = document.createElement('td');
+      rankCell.textContent = rank;
+      row.appendChild(rankCell);
+
+      // Add name to the row
+      var nameCell = document.createElement('td');
+      nameCell.textContent = name;
+      row.appendChild(nameCell);
+
+      // Add score to the row
+      var scoreCell = document.createElement('td');
+      scoreCell.textContent = score;
+      row.appendChild(scoreCell);
+
+      // Append the new row to the leaderboard
+      document.getElementById('leaderboard-body').appendChild(row);
+
+      // Clear input fields
+      document.getElementById('name').value = '';
+      document.getElementById('score').value = '';
+    }
+  </script>
+</body>
+</html>

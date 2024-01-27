@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Game Difficulty Selection</title>
+  <link rel="stylesheet" href="style4.css">
+  <link rel="shortcut icon" href="12.png" type="image/x-icon">
+</head>
+<body><header>
+
+
+    <div class="container">
+        <div class="header">
+            <img src="12.png" alt="Game Logo" height="40%" width="40%">
+            <style>
+               body {
+                      background-image: url('PLAIN.png');
+                      background-size: cover;
+                      background-position: center;
+  }
+
+              #image {
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin-top: 50px; /* Adjust the value as needed */
+  }
+            </style>
+  
+    
+        </div>
+  <div class="container">
+    <h1>Select Game Mode</h1>
+    <div class="modes">
+      <label class="mode easy">
+       
+        <input type="radio" name="mode" value="easy">
+        <div class="mode-overlay"></div>
+        <span >Easy <br> (ENG-HIN) </span>
+      
+      </label>
+
+      <label class="mode medium">
+        <input type="radio" name="mode" value="medium">
+        <div class="mode-overlay"></div>
+        <span>Medium <br> (MIX)</span>
+      </label>
+
+      <label class="mode hard">
+        <input type="radio" name="mode" value="hard">
+        <div class="mode-overlay"></div>
+        <span>Hard <br>(HIN-ENG)</span>
+      </label>
+    </div>
+    
+    <div class="help-box">
+    <img src="mobile.png" alt="Help Icon" class="help-icon">
+    <div class="help-content">
+    <h2>Game Modes</h2>
+    <p>
+      Choose your preferred game mode and difficulty level:
+      <ul>
+        <li><strong>Easy (ENG-HIN):</strong> <br>Hindi Hints & English Mystery Words!</li>
+        <li><strong>Medium (MIX):</strong> A mix of both games. HAHA!</li>
+        <li><strong>Hard (HIN-ENG):</strong> <br>Testing your Hindi skills? shall we?</li>
+      </ul>
+      </p>
+     </div>
+</div>
+    <button id="playButton">Play</button></div>
+  </div>
+  </div>
+  <!-- Your webpage content -->
+
+<footer>
+  <div class="back-to-top">
+    <a href="../home/Homepage.html">
+      <img src="https://cdn3d.iconscout.com/3d/premium/thumb/back-button-7250783-5914848.png?f=webp" alt="Back to HOME">
+    </a>
+  </div>
+</footer>
+
+<script>
+  let selectedMode = ''; // Variable to store the selected mode
+
+  // Add event listener for the "Easy" mode button
+  const easyModeButton = document.querySelector('.mode.easy');
+  easyModeButton.addEventListener('click', () => {
+    selectedMode = 'easy'; // Store the selected mode as 'easy'
+  });
+
+  // Add event listener for the "Medium" mode button
+  const mediumModeButton = document.querySelector('.mode.medium');
+  mediumModeButton.addEventListener('click', () => {
+    selectedMode = 'medium'; // Store the selected mode as 'medium'
+  });
+
+  // Add event listener for the "Hard" mode button
+  const hardModeButton = document.querySelector('.mode.hard');
+  hardModeButton.addEventListener('click', () => {
+    selectedMode = 'hard'; // Store the selected mode as 'hard'
+  });
+
+  // Add event listener for the "Play" button
+  const playButton = document.getElementById('playButton');
+  playButton.addEventListener('click', () => {
+    if (selectedMode) {
+      // If a mode is selected, redirect to the main game page with the selected mode
+      if (selectedMode === 'hard') {
+        // If the selected mode is 'hard', redirect to the specific "maingamedusra" file
+        window.location.href = `../maingamedusra/maingamedusra.html?mode=${selectedMode}`;
+      } else if (selectedMode === 'medium') {
+        // If the selected mode is 'medium', show an alert message
+        alert('🙏 DEVELOPMENT STAGE! PLEASE WAIT 🙏');
+      } else {
+        // For other modes, redirect to the general "maingame" file
+        window.location.href = `../maingame/maingame.html?mode=${selectedMode}`;
+      }
+    } else {
+      // Handle the case where no mode is selected (you can show an error message or take other actions)
+      console.error('Please select a mode before playing.');
+    }
+  });
+</script>
+
+<a href="../cardsselect/cardsselect.html" id="moreGamesButton">
+  <img src="team.png" alt="Team Icon" class="team-icon">
+  More Games!
+</a>
+
+
+
+
+</body>
+</html>
