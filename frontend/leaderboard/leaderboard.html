@@ -10,7 +10,7 @@
       text-align: center;
       margin: 0;
       padding: 0;
-      background-color: #b0c4b1; /* Updated background color */
+      background-color: #FFC8DD; /* Updated background color */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -54,7 +54,7 @@
     }
 
     #leaderboard th {
-      background-color: #4CAF50;
+      background-color: #219EBC;
       color: white;
     }
 
@@ -127,11 +127,18 @@
       <input type="number" id="score" placeholder="Score">
 
       <button onclick="updateLeaderboard()">Update Leaderboard</button>
+      <button onclick="backToHomepage()" style="margin-top: 20px;">Homepage</button>
+
     </div>
 
   </div>
 
   <script>
+    function backToHomepage() {
+      // Redirect to the homepage or adjust this according to your needs
+      window.location.href = `../home/Homepage.html`;
+    }
+
     function updateLeaderboard() {
       var name = document.getElementById('name').value;
       var score = document.getElementById('score').value;

@@ -7,7 +7,7 @@ const playAgainBtn = gameModal.querySelector("button");
 const currentScoreDisplay = document.querySelector(".current-score");
 
 let currentWord, correctLetters, wrongGuessCount, currentScore = 0;
-const maxGuesses = 6;
+const maxGuesses = 5;
 const correctGuessPoints = 10;
 const incorrectGuessPenalty = 5;
 
